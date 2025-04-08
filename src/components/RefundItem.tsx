@@ -3,7 +3,7 @@ import { ComponentProps } from "react"
 export type RefundItemProps = {
     id: string
     name: string
-    category: string
+    description: string
     amount: string
     categoryImg: string
 }
@@ -23,7 +23,7 @@ export function RefundItem({ data, ...rest }: Props) {
                     {data.name}
                 </strong>
                 <span className="text-xs text-gray-200">
-                    {data.category}
+                    {data.description}
                 </span>
             </div>
             <span className="text-sm text-gray-100 font-semibold">
