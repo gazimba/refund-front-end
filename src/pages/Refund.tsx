@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { set, z, ZodError } from "zod";
+import z, { ZodError } from "zod";
 
 import { CATEGORIES, CATEGORIES_KEYS } from "../utils/categories";
 import { Input } from "../components/Input";
@@ -33,7 +33,6 @@ export function Refund() {
 
     async function onSubmit(e: FormEvent) {
         e.preventDefault();
-
 
         if (params.id) {
             return navigate(-1)
@@ -119,7 +118,7 @@ export function Refund() {
 
             {
                 (params.id && fileURL) ? (
-                    <a href={`http://localhost/uploads/${fileURL}`} target="_blank" className="text-sm text-green-100font-semibold flex items-center justify-center gap-2 my-6 hover:opacity-70 transition ease-linear">
+                    <a href={`http://localhost:3333/uploads/${fileURL}`} target="_blank" className="text-sm text-green-100font-semibold flex items-center justify-center gap-2 my-6 hover:opacity-70 transition ease-linear">
                         <img src={fileSvg} alt="ícone do arquivo" />
                         Abrir comprovante
                     </a>

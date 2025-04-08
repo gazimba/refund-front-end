@@ -16,7 +16,7 @@ const PER_PAGE = 5;
 export function Dashboard() {
     const [name, setName] = useState("");
     const [page, setPage] = useState(1);
-    const [totalOfPage, setTotalOfPage] = useState(0);
+    const [totalPage, setTotalPage] = useState(0);
     const [refunds, setRefunds] = useState<RefundItemProps[]>([]);
 
     async function fetchRefunds() {
@@ -33,6 +33,7 @@ export function Dashboard() {
                     categoryImg: CATEGORIES[refund.category].icon,
                 }))
             )
+            setTotalPage(response.data.pagination.totalPages);
         } catch (error) {
             if (error instanceof AxiosError) {
                 return alert(error.response?.data.message)
@@ -48,7 +49,7 @@ export function Dashboard() {
 
     function handlePagination(action: "next" | "previous") {
         setPage((prevPage) => {
-            if (action === "next" && prevPage < totalOfPage) return prevPage + 1
+            if (action === "next" && prevPage < totalPage) return prevPage + 1
             if (action === "previous" && prevPage > 1) return prevPage - 1
             return prevPage
         })
@@ -79,7 +80,7 @@ export function Dashboard() {
 
             <Pagination
                 current={page}
-                total={totalOfPage}
+                total={totalPage}
                 onNext={() => handlePagination("next")}
                 onPrevious={() => handlePagination("previous")}
             />
